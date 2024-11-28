@@ -1,51 +1,41 @@
 package Lecture4_interfaces_abstract_classes;
-
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Calendar;
 
-public abstract class BaseTransaction implements TransactionInterface {
-    private final int amount;
+public class BaseTransaction implements TransactionInterface {
+    private final double amount;
     private final Calendar date;
     private final String transactionID;
 
-    /**
-     * Lecture1_adt.TransactionInterface Constructor
-     * @param amount in an integer
-     * @param date: Not null, and must be a Calendar object
-     * @return void
-     * Instialises the field, attributes of a transaction
-     * Creates a object of this
-     */
-    public BaseTransaction(int amount, @NotNull Calendar date)  {
+    public BaseTransaction(double amount, Calendar date, String transactionID) {
         this.amount = amount;
-        this.date = (Calendar) date.clone();
-        int uniq = (int) Math.random()*10000;
-        transactionID = date.toString()+uniq;
+        this.date = (Calendar) date.clone(); // Defensive copying
+        this.transactionID = transactionID;
     }
 
-    /**
-     * getAmount()
-     * @return integer
-     */
+    @Override
     public double getAmount() {
-        return amount; // Because we are dealing with Value types we need not worry about what we return
+        return amount;
     }
 
-    /**
-     * getDate()
-     * @return Calendar Object
-     */
+    @Override
     public Calendar getDate() {
-//        return date;    // Because we are dealing with Reference types we need to judiciously copy what our getters return
-        return (Calendar) date.clone(); // Defensive copying or Judicious Copying
+        return (Calendar) date.clone(); // Defensive copying
     }
 
-    // Method to get a unique identifier for the transaction
-    public String getTransactionID(){
-        return  transactionID;
+    @Override
+    public String getTransactionID() {
+        return transactionID;
     }
-    // Method to print a transaction receipt or details
-    public abstract void printTransactionDetails();
-    public abstract void apply(BankAccount ba);
+
+    @Override
+    public void printTransactionDetails() {
+        System.out.println("Transaction ID: " + transactionID);
+        System.out.println("Amount: " + amount);
+        System.out.println("Date: " + date.getTime());
+    }
+
+    @Override
+    public void apply(BankAccount ba) {
+        System.out.println("Base transaction applied. Subclasses should override this method.");
+    }
 }
