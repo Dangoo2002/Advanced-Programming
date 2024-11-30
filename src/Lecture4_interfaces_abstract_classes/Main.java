@@ -10,7 +10,7 @@ public class Main {
         deposit.printTransactionDetails();
         deposit.apply(account);
 
-        System.out.println("Account balance after deposit: " + account.getBalance());
+        System.out.println("Account balance after amount being deposit: " + account.getBalance());
 
         WithdrawalTransaction withdrawal = new WithdrawalTransaction(200, Calendar.getInstance(), "TX002");
         withdrawal.printTransactionDetails();
