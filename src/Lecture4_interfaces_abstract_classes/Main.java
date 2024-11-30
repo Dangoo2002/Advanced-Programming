@@ -16,7 +16,7 @@ public class Main {
         withdrawal.printTransactionDetails();
         withdrawal.apply(account);
 
-        System.out.println("Account balance after withdrawal: " + account.getBalance());
+        System.out.println("Account balance after withdrawing: " + account.getBalance());
 
         if (withdrawal.reverse(account)) {
             System.out.println("Account balance after reversal: " + account.getBalance());
