@@ -1,4 +1,5 @@
 package Lecture4_interfaces_abstract_classes;
+
 public class BankAccount {
     private double balance;
 
@@ -17,6 +18,8 @@ public class BankAccount {
     public void withdraw(double amount) {
         if (balance >= amount) {
             balance -= amount;
+        } else {
+            System.out.println("Insufficient balance for withdrawal.");
         }
     }
 }
