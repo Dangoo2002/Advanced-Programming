@@ -1,7 +1,8 @@
 package Lecture4_interfaces_abstract_classes;
+
 import java.util.Calendar;
 
-public class BaseTransaction implements TransactionInterface {
+public abstract class BaseTransaction implements TransactionInterface {
     private final double amount;
     private final Calendar date;
     private final String transactionID;
@@ -35,7 +36,8 @@ public class BaseTransaction implements TransactionInterface {
     }
 
     @Override
-    public void apply(BankAccount ba) {
-        System.out.println("Base transaction applied. Subclasses should override this method.");
-    }
+    public abstract void apply(BankAccount ba);
+
+    @Override
+    public abstract boolean reverse(BankAccount ba);
 }
